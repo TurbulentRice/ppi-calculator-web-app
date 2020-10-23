@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>PPI Calculator</title>
+    
+    
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+
+
+    <link rel="stylesheet" type="text/css" href="styles/style.css">
+    <link rel="icon" href="images/calc.png">
+
+  </head>
+  <body>
+
+    <!-- Start main -->
+    <div class="container-fluid">
+
+    	<div class="container">
+    		<h1>PPI Converter</h1>
+		        <p>
+		        	Solving common problems associated with scanning, printing, and converting images between mediums. 
+		        	<ol>
+		        		<li>Find the resolution of an image (ppi) from its length in pixels and millimeters.</li>
+		        		<li>Find the dimensions (pixels) of an image from its physical size and resolution.</li>
+		        		<li>Find the dimensions (mm) of an image from its size in pixels and resolution</li>
+		        	</ol>
+		        </p>
+    	</div>
+
+    	<!-- Start form rows -->
+
+    	<!-- Preset Form -->
+    	<div id="preset-row" class="row d-flex border-top p-3">
+    		<div class="col-sm-3 px-0 text-center">
+    			<p>Preset image formats:</p>
+    		</div>
+    		<div class="col-sm-6">
+    			<select id="preset-select" class="form-control">
+    				<option value="0" selected>Select an image size</option>
+    				<option value="1">15x22.5mm (Canon APS-C sensor)</option>
+    				<option value="2">16x24mm (Nikon APS-C sensor)</option>
+    				<option value="3">24x36mm (35mm film)</option>
+    				<option value="4">32.9x43.8mmm (Hasselblad 50MP sensor)</option>
+    				<option value="5">40x53.4mmm (Hasselblad 100MP sensor)</option>
+    				<option value="6">45x60mm (4.5x6cm 120 film)</option>
+    				<option value="7">60x60mm (6x6cm 120 film)</option>
+    				<option value="8">60x90mm (6x9cm 120 film)</option>
+    				<option value="9">102x127mm (4x5in large format film)</option>
+    			</select>
+    		</div>
+    		<div class="col-sm-3 form-result">
+    			<button id="clear-preset" type=button class="btn btn-warning btn-block">
+    				Clear fields
+    			</button>
+    		</div>
+    	</div>
+
+
+
+
+	    <!-- Main Form -->
+	    <div class="row border p-3">
+
+	    	<!-- PPI -->
+	    	<div class= "col-sm-4">
+		    	<!-- Form Template (card) -->
+		    	<form class = "form border border-danger rounded">
+		    		<div class="card-title text-center">
+		    			<p><strong>Size & Pixels -> PPI</strong></p>
+		    		</div>
+			    	<div class="form-group">
+			    		<label>Width (mm):</label>
+			    		<input id="ppi-mm" type="number" name="number"
+			    		class="form-control mm-w-input">
+			    	</div>
+			    	<div class="form-group">
+			    		<label>Width (pixels):</label>
+			    		<input id="ppi-pixels" type="number" name="number"
+			    		class="form-control">
+			    	</div>
+			    	<div class="alert alert-danger">
+			    		pixels / inch
+			    	</div>
+			    	<div class="form-result">
+			    		<button id="get-ppi" type="button" class="btn btn-danger btn-block">Get PPI</button>
+			    	</div>
+			   	</form>
+			</div>
+
+			<!-- Pixels -->
+	    	<div class= "col-sm-4">
+		    	<!-- Form Template -->
+		    	<form class = "form border border-success rounded">
+		    		<div class="card-title text-center">
+		    			<p><strong>Size & PPI -> Pixels</strong></p>
+		    		</div>
+		    		<div class="form-group">
+			    		<label>Height (mm):</label>
+			    		<input id="pixels-height" type="number" name="number" class="form-control mm-h-input">
+			    	</div>
+			    	<div class="form-group">
+			    		<label>Width (mm):</label>
+			    		<input id="pixels-width" type="number" name="number" class="form-control mm-w-input">
+			    	</div>
+			    	<div class="form-group">
+			    		<label>PPI:</label>
+			    		<input id="pixels-ppi" type="number" name="number" class="form-control">
+			    	</div>
+			    	<div class="alert alert-success">
+			    		pixels x pixels
+			    	</div>
+			    	<div class="form-result">
+			    		<button id="get-pixels" type="button" class="btn btn-success btn-block">Get Pixels</button>
+			    	</div>
+			   	</form>		   	
+			</div>
+
+			<!-- Size -->
+			<div class= "col-sm-4">
+		    	<!-- Form Template -->
+		    	<form class = "form border border-primary rounded">
+		    		<div class="card-title text-center">
+		    			<p><strong>Pixels & PPI -> Size</strong></p>
+		    		</div>
+		    		<div class="form-group">
+			    		<label>Height (pixels):</label>
+			    		<input id="size-height" type="number" name="number" class="form-control">
+			    	</div>
+			    	<div class="form-group">
+			    		<label>Width (pixels):</label>
+			    		<input id="size-width" type="number" name="number" class="form-control">
+			    	</div>
+			    	<div class="form-group">
+			    		<label>PPI:</label>
+			    		<input id="size-ppi" type="number" name="number" class="form-control">
+			    	</div>
+			    	<div class="alert alert-primary">
+			    		mm x mm
+			    	</div>
+			    	<div class="form-result">
+			    		<button id="get-size" type="button" class="btn btn-primary btn-block">Get Size</button>
+			    	</div>
+			   	</form>		   	
+			</div>
+		</div>
+
+	</div>
+
+	<footer>
+		<div class="text-center">
+			<small>Made by Sean Russell, 2020</small>
+		</div>
+	</footer>
+
+	<script type="text/javascript" src="scripts/dpiConverter.js"></script>
+
+  </body>
+</html> 
