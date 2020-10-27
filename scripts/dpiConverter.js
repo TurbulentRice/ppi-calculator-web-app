@@ -54,106 +54,131 @@ const ppi = (pixels, length) => diagonal(pixels) / diagonal(length)
 
 
 ///////////////////////
-// Assigning Actions
+// Assigning Events
 ///////////////////////
 
-// PPI button
-const ppiBtn = document.getElementById("get-ppi");
-ppiBtn.onclick = () => {
-	// get widths and solve
-	const mm = Number(document.getElementById("ppi-mm").value)
-	const pixels = Number(document.getElementById("ppi-pixels").value)
 
-	// handle invalid
-	if (!(mm && pixels)) {
-		document.querySelector(".alert-danger").textContent = "Invalid input";
-		return
-	}
+// Clearing + Updating fields
 
-	// get answer
-	const answer = getPPI(mm, pixels)
+// Update preset
+const updatePreset = () => {
+	// Get the preset value, clear alerts
+	let presetVal = Number(presetSelector.value)
+	clearAlerts()
 
-	// update alert field with answer
-	let update = `${answer} pixels / inch`
-	console.log(update)
-	document.querySelector(".alert-danger").textContent = update
-};
+	// if changed to 0, clear fields and return
+	if (!presetVal) return clearFields();
 
-// Pixels button
-const pixelsBtn = document.getElementById("get-pixels")
-pixelsBtn.onclick = () => {
-	// get width, height, ppi, and solve
-	const mmHeight = Number(document.getElementById("pixels-height").value)
-	const mmWidth = Number(document.getElementById("pixels-width").value)
-	const ppi = Number(document.getElementById("pixels-ppi").value)
-
-	// handle invalid
-	if (!(mmHeight && mmWidth && ppi)) {
-		document.querySelector(".alert-success").textContent = "Invalid input";
-		return;
-	}
-
-	// get answer
-	const answer = getPixDimensions([mmHeight, mmWidth], ppi)
-
-	// update alert field with answer
-	let update = `${answer[0]} x ${answer[1]} pixels`
-	console.log(update)
-	document.querySelector(".alert-success").textContent = update
-};
-
-// Size button
-const sizeBtn = document.getElementById("get-size")
-sizeBtn.onclick = () => {
-	// get width, height, ppi, and solve
-	const pxHeight = Number(document.getElementById("size-height").value)
-	const pxWidth = Number(document.getElementById("size-width").value)
-	const ppi = Number(document.getElementById("size-ppi").value)
-
-	// handle invalid
-	if (!(pxHeight && pxWidth && ppi)) {
-		document.querySelector(".alert-primary").textContent = "Invalid input";
-		return;
-	}
-
-	// get answer, update alert field
-	const answer = getMMDimensions([pxHeight, pxWidth], ppi)
-	let update = `${answer[0]} x ${answer[1]} mm`
-	console.log(update)
-	document.querySelector(".alert-primary").textContent = update
-};
-
-
-// On preset change, populate relevant fields
-const presetSelect = document.getElementById("preset-select");
-presetSelect.onchange = () => {
-	// Get the preset value
-	let val = Number(presetSelect.value)
-
-	// do nothing if 0
-	if (!val) return;
-
-	// Otherwise, change only relevant mm fields
+	// Otherwise, update only relevant mm fields
 	let heights = document.querySelectorAll(".mm-h-input")
-	heights.forEach(elem => elem.value = presets[val].h)
+	heights.forEach(elem => elem.value = presets[presetVal].h)
 
 	let widths = document.querySelectorAll(".mm-w-input")
-	widths.forEach(elem => elem.value = presets[val].w)
+	widths.forEach(elem => elem.value = presets[presetVal].w)
 };
 
-const clearFields = document.getElementById("clear-preset")
-clearFields.onclick = () => {
+// Assign preset onchange
+const presetSelector = document.getElementById("preset-select");
+presetSelector.addEventListener("change", updatePreset)
 
+
+clearFields = () => {
 	// get all input elements and replace with empty string
 	let fields = document.querySelectorAll("input");
 	fields.forEach(field => field.value = "")
+}
+clearAlerts = () => {
 	// reset alert fields
 	let alerts = document.querySelectorAll(".alert")
 	for (let i =0; i<alerts.length; i++) {
 		alerts[i].textContent = defaultMessages[i]
 	}
-
-	// Reset the preset selector
-	presetSelect.value = 0;
+}
+// Clear all inputs and reset selector
+clearAll = () => {
+	clearFields();
+	clearAlerts();
+	presetSelector.value = 0;
 }
 
+// Assign clear fields button
+const clearFieldsBtn = document.getElementById("clear-preset")
+clearFieldsBtn.addEventListener("click", clearAll)
+
+// Calculating
+
+const calculate = (event) => {
+	// check inputs function
+	const check = arg => typeof(arg) === "number" ? !!arg : arg.every(item => !!item);
+	let response
+
+	//determine target
+	const target = event.target;
+	console.log(target.id)
+	switch (target.id) {
+		case "get-ppi":
+			response = gatherPPI();
+			break;
+		case "get-pixels":	
+			response = gatherPixels();
+			break;
+		case "get-size":
+			response = gatherSize();
+			break;
+	}
+		// handle invalid
+		console.log(response)
+		if (!(check(response.arg1) && check(response.arg2))) {
+			response.alert.textContent = "Invalid input";
+			return
+		};
+
+		// call curried function, populating appropriate box with answer
+		response.solve();
+};
+
+
+// curry function
+// gathered data, returns object with values and solve function
+
+//PPI
+
+const gatherPPI = () => ({
+	arg1: Number(document.getElementById("ppi-mm").value),
+	arg2: Number(document.getElementById("ppi-pixels").value),
+	alert: document.querySelector(".alert-danger"),
+	solve: function () {
+		const answer = getPPI(this.arg1, this.arg2)
+		console.log(answer)
+		this.alert.textContent = `${answer} pixels / inch`
+	}
+});
+
+// PIXELS
+const gatherPixels = () => ({
+	arg1: [Number(document.getElementById("pixels-height").value), Number(document.getElementById("pixels-width").value)],
+	arg2: Number(document.getElementById("pixels-ppi").value),
+	alert: document.querySelector(".alert-success"),
+	solve: function () {
+		const answer = getPixDimensions(this.arg1, this.arg2)
+		this.alert.textContent = `${answer[0]} x ${answer[1]} pixels`
+	}
+});
+
+// SIZE
+const gatherSize = () => ({
+	arg1: [Number(document.getElementById("size-height").value), Number(document.getElementById("size-width").value)],
+	arg2: Number(document.getElementById("size-ppi").value),
+	alert: document.querySelector(".alert-primary"),
+	solve: function () {
+		const answer = getMMDimensions(this.arg1, this.arg2)
+		this.alert.textContent = `${answer[0]} x ${answer[1]} mm`
+	}
+});
+
+
+// Add event listeners with IIFE
+const calcButtons = document.querySelectorAll("[data-calc]");
+(function () {
+	calcButtons.forEach(btn => btn.addEventListener("click", calculate))
+})();
