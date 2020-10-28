@@ -95,7 +95,6 @@ const gatherPPI = () => ({
 	alert: document.querySelector(".alert-danger"),
 	solve: function () {
 		const answer = getPPI(this.arg1, this.arg2)
-		console.log(answer)
 		this.alert.textContent = `${answer} pixels / inch`
 	}
 });
