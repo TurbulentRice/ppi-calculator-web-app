@@ -2,18 +2,6 @@
 // GLOBAL OBJECTS
 //////////////////////////////
 
-// CONVERTERS
-const convert = {
-	// Convert pixels to megapixels
-	pixToMP: (pixels) => pixels / 1000000,
-	// Convert megapixels to pixels
-	mpToPix: (mp) => mp * 1000000,
-	// Convert between MM and IN
-	mmToIn: (mm) => mm / 25.4,
-
-	inToMM: (inch) => inch * 25.4
-}
-
 // PRESET FORMATS
 const presets = {
 	0: undefined,
@@ -29,6 +17,17 @@ const presets = {
 }
 
 const defaultMessages = ["pixels / inch", "pixels x pixels", "mm x mm"]
+
+// CONVERTERS
+const convert = {
+	// Convert pixels to megapixels
+	pixToMP: (pixels) => pixels / 1000000,
+	// Convert megapixels to pixels
+	mpToPix: (mp) => mp * 1000000,
+	// Convert between MM and IN
+	mmToIn: (mm) => mm / 25.4,
+	inToMM: (inch) => inch * 25.4
+}
 
 // FORMULAE
 
