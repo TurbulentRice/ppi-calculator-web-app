@@ -6,4 +6,4 @@ I needed something to quickly do these calculations while scanning film negative
 
 A practice project for learning Bootstrap CSS and DOM manipulation with vanilla JavaScript.
 
-GitHub Pages deployment ---> https://turbulentrice.github.io/dpi-calculator-web-app/
+GitHub Pages deployment ---> https://turbulentrice.github.io/ppi-calculator-web-app/
