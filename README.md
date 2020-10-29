@@ -1,4 +1,4 @@
-# dpi-calculator-web-app
+# ppi-calculator-web-app
 Web application for converting between resolution, physical dimensions, and pixel dimensions of image mediums.
 
 A practice project for learning Bootstrap CSS and DOM manipulation with vanilla JavaScript.
