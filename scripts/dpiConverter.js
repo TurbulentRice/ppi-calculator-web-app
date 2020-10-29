@@ -88,7 +88,7 @@ clearAll = () => {
 
 // Calculating answers
 
-// PPI currier function
+// PPI result object
 const gatherPPI = () => ({
 	arg1: Number(document.getElementById("ppi-mm").value),
 	arg2: Number(document.getElementById("ppi-pixels").value),
@@ -99,7 +99,7 @@ const gatherPPI = () => ({
 	}
 });
 
-// PIXELS currier function
+// PIXELS result object
 const gatherPixels = () => ({
 	arg1: [Number(document.getElementById("pixels-height").value), Number(document.getElementById("pixels-width").value)],
 	arg2: Number(document.getElementById("pixels-ppi").value),
@@ -110,7 +110,7 @@ const gatherPixels = () => ({
 	}
 });
 
-// SIZE currier function
+// SIZE result object
 const gatherSize = () => ({
 	arg1: [Number(document.getElementById("size-height").value), Number(document.getElementById("size-width").value)],
 	arg2: Number(document.getElementById("size-ppi").value),
