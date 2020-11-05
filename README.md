@@ -1,9 +1,15 @@
 # ppi-calculator-web-app
+
 Web application for converting between resolution, physical dimensions, and pixel dimensions of image mediums. Includes presets for quick calculations!
 
-I needed something to quickly do these calculations while scanning film negatives at work. It's helpful for predicting digital image sizes, determining what resolution to scan negatives and documents at, and can also be used to find the pixel density of digital images and imaging sensors.
+## [GitHub Pages deployment] (https://turbulentrice.github.io/ppi-calculator-web-app/)
 
+![PPI calculator screenshot](calc_screenshot.jpg)
 
-A practice project for learning Bootstrap CSS and DOM manipulation with vanilla JavaScript.
+## About
 
-GitHub Pages deployment ---> https://turbulentrice.github.io/ppi-calculator-web-app/
+A practice project for learning Bootstrap CSS and DOM manipulation with vanilla JavaScript. I needed something to quickly do these calculations while scanning film negatives for my job, and made this calculator to help:
+
+1. Predict digital image size based on scanning resolution.
+2. Decide what resolution to scan negatives/documents at to achieve a desired pixel count/file size.
+3. Determine the native pixel density (ppi) of digital images and imaging sensors, to achieve precise 1:1 reproduction.
