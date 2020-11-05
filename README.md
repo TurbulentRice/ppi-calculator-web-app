@@ -2,8 +2,6 @@
 
 Web application for converting between resolution, physical dimensions, and pixel dimensions of image mediums. Includes presets for quick calculations!
 
-<<<<<<< HEAD
-
 ## [GitHub Pages deployment] https://turbulentrice.github.io/ppi-calculator-web-app/)
 
 ![PPI calculator screenshot](/images/calc_screenshot.jpg)
