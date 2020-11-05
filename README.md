@@ -4,7 +4,7 @@ Web application for converting between resolution, physical dimensions, and pixe
 
 ## [GitHub Pages deployment] (https://turbulentrice.github.io/ppi-calculator-web-app/)
 
-![PPI calculator screenshot](calc_screenshot.jpg)
+![PPI calculator screenshot](/images/calc_screenshot.jpg)
 
 ## About
 
