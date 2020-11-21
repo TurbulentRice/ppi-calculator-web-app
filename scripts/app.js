@@ -76,7 +76,7 @@ const gatherSize = () => ({
 
 // General Calculating Event Handler
 const calculate = (event) => {
-	// input checker function
+	// utility
 	const check = arg => typeof(arg) === "number" ? !!arg : arg.every(item => !!item);
 	let response;
 	const targetId = event.target.id;
@@ -90,12 +90,11 @@ const calculate = (event) => {
 		response = gatherSize();
 	} else return "Invalid target, returning..."
 
-		// handle invalid
-		if (!(check(response.arg1) && check(response.arg2))) {
-			response.alert.textContent = "Invalid input";
-			return
-		};
-
+	// handle invalid
+	if (!(check(response.arg1) && check(response.arg2))) {
+		response.alert.textContent = "Invalid input";
+		return
+	};
 		response.solve();
 };
 
@@ -104,23 +103,22 @@ const calculate = (event) => {
 //////////////////////////////
 // ASSIGNING LISTENERS
 //////////////////////////////
-
-// Assign preset onchange
 const presetSelector = document.getElementById("preset-select");
-presetSelector.addEventListener("change", updatePreset)
-
-// Assign clear fields button
-const clearFieldsBtn = document.getElementById("clear-preset")
-clearFieldsBtn.addEventListener("click", clearAll)
-
-// Assign onclick to buttons
+const clearFieldsBtn = document.getElementById("clear-preset");
 const calcButtons = document.querySelectorAll("[data-info='calc']");
-(function () {
-	calcButtons.forEach(btn => btn.addEventListener("click", calculate))
-})();
-
-// Assign oninput to inputs
 const inputListeners = document.querySelectorAll("input");
+
 (function () {
+	// Assign preset onchange
+	presetSelector.addEventListener("change", updatePreset)
+
+	// Assign clear fields button
+	clearFieldsBtn.addEventListener("click", clearAll)
+
+	// Assign onclick to buttons
+	calcButtons.forEach(btn => btn.addEventListener("click", calculate))
+
+	// Assign oninput to inputs
 	inputListeners.forEach(input => input.addEventListener("input", calculate))
 })();
+

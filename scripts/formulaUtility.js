@@ -1,7 +1,5 @@
 // CONVERTERS
 
-// Consider putting all in one class, exporting class
-
 // Convert pixels to megapixels
 export const pixToMP = (pixels) => pixels / 1000000
 // Convert megapixels to pixels
@@ -27,4 +25,3 @@ export const getPixDimensions = (lengths, ppi) => lengths.map(mm => getPixels(mm
 export const getLength = (pixels, ppi) => Math.round(inToMM(pixels / ppi));
 export const getMMDimensions = (pixels, ppi) => pixels.map(pix => getLength(pix, ppi))
 
-// export * from '/scripts/formulaUtility.js'
