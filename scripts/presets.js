@@ -1,16 +1,4 @@
 // PRESET FORMATS
-// export const presets = {
-// 	0: {h:undefined, w:undefined, info: "Select an image size"},
-// 	1: {h:15, w:22.5, info: "15x22.5mm (Canon APS-C sensor)"},
-// 	2: {h:16, w:24, info: "16x24mm (Nikon APS-C sensor)"},
-// 	3: {h:24, w:36, info: "24x36mm (35mm film)"},
-// 	4: {h:32.9, w:43.8, info: "32.9x43.8mm (Hasselblad 50MP sensor)"},
-// 	5: {h:40, w:53.4, info: "40x53.4mm (Hasselblad 100MP sensor)"},
-// 	6: {h:45, w:60, info: "45x60mm (4.5x6cm 120 film)"},
-// 	7: {h:60, w:60, info: "60x60mm (6x6cm 120 film)"},
-// 	8: {h:60, w:90, info: "60x90mm (6x9cm 120 film)"},
-// 	9: {h:102, w:127, info: "102x127mm (4x5in large format film)"}
-// }
 
 export const presets = [
 	{h:undefined, w:undefined, info: "Select an image size"},
