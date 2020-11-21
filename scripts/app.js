@@ -5,6 +5,15 @@ import { presets, defaultMessages } from '/scripts/presets.js'
 // DOM EVENTS
 //////////////////////////////
 
+const populatePresets = () => {
+	presets.forEach((preset, i) => {
+		const newOption = document.createElement("option");
+		newOption.value = i;
+		newOption.text = preset.info
+		presetSelector.add(newOption)
+	})
+};
+
 // Clearing + Updating fields
 // Update preset
 const updatePreset = () => {
@@ -109,6 +118,9 @@ const calcButtons = document.querySelectorAll("[data-info='calc']");
 const inputListeners = document.querySelectorAll("input");
 
 (function () {
+	// Populate preset selector
+	populatePresets()
+
 	// Assign preset onchange
 	presetSelector.addEventListener("change", updatePreset)
 
